@@ -16,13 +16,13 @@ namespace ProjetoGerenciador
         {
             InitializeComponent();
             DAO conexao = new DAO();
-        }
+        }//feito
 
         private void button1_Click(object sender, EventArgs e)//Inserir tarefa
         {
             Inserir ins = new Inserir();
             ins.ShowDialog();
-        }
+        }//feito
 
         private void listarTarefa_Click(object sender, EventArgs e)
         {
@@ -34,7 +34,7 @@ namespace ProjetoGerenciador
         {
             Editar edi = new Editar();
             edi.ShowDialog();
-        }
+        }//feito
 
         private void concluida_Click(object sender, EventArgs e)
         {
@@ -46,11 +46,11 @@ namespace ProjetoGerenciador
         {
             Excluir exc = new Excluir();
             exc.ShowDialog();
-        }
+        }//feito
 
         private void sair_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
+        }//feito
     }
 }

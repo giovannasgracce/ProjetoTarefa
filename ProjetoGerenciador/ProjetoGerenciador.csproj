@@ -143,11 +143,23 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Concluida.resx">
+      <DependentUpon>Concluida.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editar.resx">
+      <DependentUpon>Editar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Excluir.resx">
+      <DependentUpon>Excluir.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Inserir.resx">
       <DependentUpon>Inserir.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Listar.resx">
+      <DependentUpon>Listar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>

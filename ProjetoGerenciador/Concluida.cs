@@ -16,5 +16,35 @@ namespace ProjetoGerenciador
         {
             InitializeComponent();
         }
+
+        private void feita_Click(object sender, EventArgs e)
+        {
+                if (maskedTextBox1.Text == "")
+                {
+                    MessageBox.Show("Digite o código da tarefa.");
+                    return;
+                }
+
+                DialogResult confirmacao = MessageBox.Show(
+                    "Tem certeza que deseja marcar como concluída?",
+                    "Confirmar Conclusão",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question
+                );
+
+                if (confirmacao == DialogResult.Yes)
+                {
+                    int cod = Convert.ToInt32(maskedTextBox1.Text);
+                    DAO dao = new DAO();
+                    MessageBox.Show(dao.MarcarComoConcluida(cod));
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Ação cancelada.");
+                }
+        }
+
     }
 }
+
