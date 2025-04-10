@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,7 +33,17 @@ namespace ProjetoGerenciador
             int codigo = Convert.ToInt32(maskedCodigo.Text);//pegar oq os usuarios digitou
             string tit = titulo.Text;
             string des = descricao.Text;
-            DateTime dtVenci = DateTime.Parse(maskedTextBox1.Text);
+            DateTime dtVenci;
+            bool dataValida = DateTime.TryParseExact(maskedTextBox1.Text, "dd/MM/yyyy",
+                System.Globalization.CultureInfo.InvariantCulture,
+                System.Globalization.DateTimeStyles.None, out dtVenci);
+
+            if (!dataValida)
+            {
+                MessageBox.Show("Data inválida! Use o formato dd/MM/yyyy.");
+                return;
+            }
+
             string pri = comboBox1.Text;
             string circunstancia;
 
@@ -44,7 +55,6 @@ namespace ProjetoGerenciador
             {
                 circunstancia = "Pendente";
             }
-
 
             edi.Editar(codigo, "titulo", tit);
             edi.Editar(codigo, "descricao", des);
@@ -78,35 +88,33 @@ namespace ProjetoGerenciador
 
         private void procurar_Click(object sender, EventArgs e)
         {
-
             if (maskedCodigo.Text == "")
             {
                 titulo.Text = "Preencha o código";
                 descricao.Text = "Preencha o código";
                 comboBox1.Text = "Preencha o código";
                 maskedTextBox1.Text = "Preencha o código";
-                concluida.Text = "Preencha o código";
+                concluida.Checked = false;
             }
             else
             {
+                int codigo = Convert.ToInt32(maskedCodigo.Text);
 
+                titulo.Text = edi.RetornarTitulo(codigo);
+                descricao.Text = edi.RetornarDescricao(codigo);
+                comboBox1.Text = edi.RetornarPrioridade(codigo);
+                maskedTextBox1.Text = edi.RetornarData(codigo);
 
-                int codigo = Convert.ToInt32(maskedCodigo.Text);//Coletando o código
+                string status = edi.RetornarCircustancia(codigo); // ← Pega "Concluída" ou "Pendente"
+                concluida.Checked = (status == "Concluída"); // ← Marca só se estiver concluída
 
-                titulo.Text = edi.RetornarTitulo(codigo);//Preenchendo o campo titulo
-                descricao.Text = edi.RetornarDescricao(codigo);//Preenchendo o campo descricao
-                comboBox1.Text = edi.RetornarPrioridade(codigo);//Preenchendo o campo prioridade
-                maskedTextBox1.Text = edi.RetornarData(codigo);//Preenchendo o campo data
-                concluida.Text = edi.RetornarCircustancia(codigo);//Preenchendo o campo circustancia
-
-
-                maskedCodigo.ReadOnly = true;// deixa apenas leitura
+                maskedCodigo.ReadOnly = true;
                 titulo.ReadOnly = false;
                 descricao.ReadOnly = false;
                 comboBox1.Enabled = true;
                 maskedTextBox1.ReadOnly = false;
-                concluida.Checked = false;
             }
         }
+
     }
 }

@@ -35,13 +35,16 @@ namespace ProjetoGerenciador
             }
         }// Fim do construtor
 
-        public string Inserir(int codigo, string titulo, string descricao, DateTime dtVenci, string prioridade, string circunstancia)//Inserir no banco todos os inserir são assim
+        public string Inserir(string titulo, string descricao, DateTime dtVenci, string prioridade, string circunstancia)
         {
-            string inserir = $"Insert into tarefa(codigo,titulo,descricao,dtVenci,prioridade,circunstancia) values('{codigo}','{titulo}','{descricao}','{dtVenci:yyyy-MM-dd}','{prioridade}','{circunstancia}')";
+            string inserir = $"INSERT INTO tarefa(titulo, descricao, dtVenci, prioridade, circunstancia) " +
+                             $"VALUES('{titulo}', '{descricao}', '{dtVenci:yyyy-MM-dd}', '{prioridade}', '{circunstancia}')";
+
             MySqlCommand sql = new MySqlCommand(inserir, conexao);
-            string resultado = sql.ExecuteNonQuery() + "Executado!";
+            string resultado = sql.ExecuteNonQuery() + " Executado!";
             return resultado;
-        }//fim do metodo inserir
+        }
+
 
 
 
@@ -141,7 +144,8 @@ namespace ProjetoGerenciador
             int posicao = ConsultarPorCodigo(cod);
             if (posicao > -1)
             {
-                return dtVenci[posicao].ToString("yyyy-MM-dd"); 
+                return dtVenci[posicao].ToString("dd/MM/yyyy");
+
             }
             return "Código digitado não é válido";
         }
@@ -166,12 +170,16 @@ namespace ProjetoGerenciador
 
         public string Editar(int codigo, string campo, string dado)
         {
-            string query = $"update tarefa set {campo} = '{dado}' where codigo = codigo";
+            string query = $"UPDATE tarefa SET {campo} = @dado WHERE codigo = @codigo";
             MySqlCommand sql = new MySqlCommand(query, conexao);
+            sql.Parameters.AddWithValue("@dado", dado);
+            sql.Parameters.AddWithValue("@codigo", codigo);
             string resultado = sql.ExecuteNonQuery() + "Atualizado!!";
             return resultado;
         }//fim do atualizar--utiliza so na pessoa// update {nometabela} set ---> utiliza para masi de uma tabela em um unico método
 
+
+        
 
         public string Excluir(int codigo)
         {

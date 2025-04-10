@@ -29,90 +29,96 @@
         private void InitializeComponent()
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.filtrarTudo = new System.Windows.Forms.Button();
             this.voltar = new System.Windows.Forms.Button();
             this.priori = new System.Windows.Forms.ComboBox();
             this.status = new System.Windows.Forms.ComboBox();
+            this.Pesquisa = new System.Windows.Forms.TextBox();
+            this.gerarRelatorio = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 51);
+            this.dataGridView1.Location = new System.Drawing.Point(0, 87);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(800, 340);
+            this.dataGridView1.Size = new System.Drawing.Size(810, 304);
             this.dataGridView1.TabIndex = 0;
-            // 
-            // filtrarTudo
-            // 
-            this.filtrarTudo.Location = new System.Drawing.Point(403, 413);
-            this.filtrarTudo.Name = "filtrarTudo";
-            this.filtrarTudo.Size = new System.Drawing.Size(140, 32);
-            this.filtrarTudo.TabIndex = 1;
-            this.filtrarTudo.Text = "Filtrar";
-            this.filtrarTudo.UseVisualStyleBackColor = true;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // voltar
             // 
-            this.voltar.Location = new System.Drawing.Point(257, 413);
+            this.voltar.Location = new System.Drawing.Point(12, 407);
             this.voltar.Name = "voltar";
             this.voltar.Size = new System.Drawing.Size(104, 31);
             this.voltar.TabIndex = 2;
             this.voltar.Text = "voltar";
             this.voltar.UseVisualStyleBackColor = true;
+            this.voltar.Click += new System.EventHandler(this.voltar_Click);
             // 
             // priori
             // 
             this.priori.FormattingEnabled = true;
-            this.priori.Items.AddRange(new object[] {
-            "1.Baixa",
-            "2.Média",
-            "3.Alta",
-            "4.todos"});
-            this.priori.Location = new System.Drawing.Point(423, 12);
+            this.priori.Location = new System.Drawing.Point(12, 27);
             this.priori.Name = "priori";
-            this.priori.Size = new System.Drawing.Size(174, 24);
+            this.priori.Size = new System.Drawing.Size(145, 24);
             this.priori.TabIndex = 3;
             // 
             // status
             // 
             this.status.FormattingEnabled = true;
-            this.status.Items.AddRange(new object[] {
-            "1.pendente",
-            "2.concluida",
-            "3.todos"});
-            this.status.Location = new System.Drawing.Point(216, 12);
+            this.status.Location = new System.Drawing.Point(12, 57);
             this.status.Name = "status";
             this.status.Size = new System.Drawing.Size(145, 24);
             this.status.TabIndex = 4;
+            // 
+            // Pesquisa
+            // 
+            this.Pesquisa.Location = new System.Drawing.Point(351, 23);
+            this.Pesquisa.Name = "Pesquisa";
+            this.Pesquisa.Size = new System.Drawing.Size(405, 22);
+            this.Pesquisa.TabIndex = 5;
+            this.Pesquisa.TextChanged += new System.EventHandler(this.Pesquisa_TextChanged);
+            // 
+            // gerarRelatorio
+            // 
+            this.gerarRelatorio.Location = new System.Drawing.Point(635, 59);
+            this.gerarRelatorio.Name = "gerarRelatorio";
+            this.gerarRelatorio.Size = new System.Drawing.Size(121, 22);
+            this.gerarRelatorio.TabIndex = 6;
+            this.gerarRelatorio.Text = "Relatório";
+            this.gerarRelatorio.UseVisualStyleBackColor = true;
+            this.gerarRelatorio.Click += new System.EventHandler(this.gerarRelatorio_Click);
             // 
             // Listar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.gerarRelatorio);
+            this.Controls.Add(this.Pesquisa);
             this.Controls.Add(this.status);
             this.Controls.Add(this.priori);
             this.Controls.Add(this.voltar);
-            this.Controls.Add(this.filtrarTudo);
             this.Controls.Add(this.dataGridView1);
             this.Name = "Listar";
             this.Text = "Listar";
             this.Load += new System.EventHandler(this.Listar_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button filtrarTudo;
         private System.Windows.Forms.Button voltar;
         private System.Windows.Forms.ComboBox priori;
         private System.Windows.Forms.ComboBox status;
+        private System.Windows.Forms.TextBox Pesquisa;
+        private System.Windows.Forms.Button gerarRelatorio;
     }
 }
